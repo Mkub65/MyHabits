@@ -12,6 +12,10 @@ namespace MyHabit.ViewModels
         private string itemId;
         private string text;
         private string description;
+        private DateTime startDate;
+        private DateTime endDate;
+        private bool archieved;
+
         public string Id { get; set; }
 
         public string Text
@@ -24,6 +28,24 @@ namespace MyHabit.ViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public  DateTime StartDate
+        {
+            get => startDate;
+            set => SetProperty(ref startDate, value);
+        }
+
+        public DateTime EndDate
+        {
+            get => endDate;
+            set => SetProperty(ref endDate, value);
+        }
+
+        public bool Archieved
+        {
+            get => archieved;
+            set => SetProperty(ref archieved, value);
         }
 
         public string ItemId
@@ -47,6 +69,9 @@ namespace MyHabit.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
+                StartDate = item.StartDate;
+                EndDate = item.EndDate;
+                Archieved = item.Archieved;
             }
             catch (Exception)
             {

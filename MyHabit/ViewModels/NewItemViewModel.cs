@@ -11,6 +11,9 @@ namespace MyHabit.ViewModels
     {
         private string text;
         private string description;
+        private DateTime startDate;
+        private DateTime endDate;
+        private bool archived;
 
         public NewItemViewModel()
         {
@@ -38,6 +41,23 @@ namespace MyHabit.ViewModels
             set => SetProperty(ref description, value);
         }
 
+        public DateTime StartDate
+        {
+            get => startDate;
+            set => SetProperty(ref startDate, value);
+        }
+
+        public DateTime EndDate
+        {
+            get => endDate;
+            set => SetProperty(ref endDate, value);
+        }
+        public bool Archieved
+        {
+            get => archived;
+            set => SetProperty(ref archived, value);
+        }
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
@@ -53,7 +73,10 @@ namespace MyHabit.ViewModels
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Description = Description
+                Description = Description,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                Archieved = Archieved
             };
 
             await DataStore.AddItemAsync(newItem);
