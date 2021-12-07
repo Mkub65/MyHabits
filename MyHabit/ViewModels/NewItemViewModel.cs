@@ -11,8 +11,8 @@ namespace MyHabit.ViewModels
     {
         private string text;
         private string description;
-        private DateTime startDate;
-        private DateTime endDate;
+        private DateTime startDate = DateTime.Now;
+        private DateTime endDate = DateTime.Now.AddDays(30);
         private bool archived;
 
         public NewItemViewModel()
@@ -26,7 +26,8 @@ namespace MyHabit.ViewModels
         private bool ValidateSave()
         {
             return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+                && !String.IsNullOrWhiteSpace(description)
+                && endDate > startDate;
         }
 
         public string Text

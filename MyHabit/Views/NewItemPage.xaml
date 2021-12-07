@@ -12,6 +12,12 @@
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
             <Label Text="Description" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <Label Text="Start date" FontSize="Medium" />
+            <DatePicker Date="{Binding StartDate, Mode=TwoWay}" />
+            <Label Text="End date" FontSize="Medium" />
+            <DatePicker Date="{Binding EndDate, Mode=TwoWay}" />
+            <Label Text="Archived" FontSize="Medium" />
+            <CheckBox IsChecked="{Binding Archieved, Mode=TwoWay}" />            
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
