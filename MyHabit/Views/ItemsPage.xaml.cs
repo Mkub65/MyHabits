@@ -21,6 +21,13 @@ namespace MyHabit.Views
             InitializeComponent();
 
             BindingContext = _viewModel = new ItemsViewModel();
+
+            var habitStatesStrings = new List<string>(Enum.GetNames(typeof(HabitStatus)));
+
+           // var stringr = _viewModel.Items[0].Habits.ToArray()[0];
+
+            //var picker = new Picker { Title = "Select state", TitleColor = Color.Red };
+            //picker.ItemsSource = habitStatesStrings;
         }
 
         protected override void OnAppearing()

@@ -16,6 +16,21 @@ namespace MyHabit.ViewModels
         private DateTime endDate;
         private bool archieved;
 
+        public ItemDetailViewModel()
+        {
+            SaveCommand = new Command(OnSave, ValidateSave);
+            CancelCommand = new Command(OnCancel);
+            this.PropertyChanged +=
+                (_, __) => SaveCommand.ChangeCanExecute();
+        }
+
+        private bool ValidateSave()
+        {
+            return !String.IsNullOrWhiteSpace(text)
+                && !String.IsNullOrWhiteSpace(description)
+                && endDate > startDate;
+        }
+
         public string Id { get; set; }
 
         public string Text
@@ -77,6 +92,33 @@ namespace MyHabit.ViewModels
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        public Command SaveCommand { get; }
+        public Command CancelCommand { get; }
+
+        private async void OnCancel()
+        {
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
+        }
+
+        private async void OnSave()
+        {
+            Item newItem = new Item()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Text = Text,
+                Description = Description,
+                StartDate = StartDate,
+                EndDate = EndDate,
+                Archieved = Archieved
+            };
+
+            await DataStore.AddItemAsync(newItem);
+
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

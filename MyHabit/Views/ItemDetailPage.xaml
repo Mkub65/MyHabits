@@ -9,6 +9,16 @@
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+        <Label Text="Start date" FontSize="Medium" />
+        <DatePicker Date="{Binding StartDate}" />
+        <Label Text="End date" FontSize="Medium" />
+        <DatePicker Date="{Binding EndDate}" />
+        <Label Text="Archived" FontSize="Medium" />
+        <CheckBox IsChecked="{Binding Archieved}" />
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
     </StackLayout>
     
 </ContentPage>

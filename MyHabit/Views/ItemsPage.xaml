@@ -19,7 +19,7 @@
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate>                  
                     <StackLayout Padding="10" x:DataType="model:Item">
                         <Label Text="{Binding Text}" 
                             LineBreakMode="NoWrap" 
@@ -29,6 +29,10 @@
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
+                        <Picker Title="Select status"                                
+                                ItemsSource="{Binding Habits}"
+                                
+                                 />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -42,3 +46,4 @@
         </CollectionView>
     </RefreshView>
 </ContentPage>
+
