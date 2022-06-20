@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstApp.AddingPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Add New Habit" />
+            <Entry x:Name="name" Placeholder="Name of Habit" />
+            <Entry x:Name="description" Placeholder="Description of Habit" />
+            <Button TextColor="Black" Text="Add Habit" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

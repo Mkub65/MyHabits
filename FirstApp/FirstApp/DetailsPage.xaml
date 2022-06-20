@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstApp.DetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Habit Details" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   FontSize="Medium"/>
+            <Label Text="Habit Name"/>
+            <Entry x:Name="habitName"/>
+            <Label Text="Habit Description"/>
+            <Entry x:Name="habitDescription"/>
+            <Label Text="Habit Start Date"/>
+            <Entry x:Name="habitStartDate"/>
+            <Label Text="Habit End Date"/>
+            <Entry x:Name="habitEndDate"/>
+            <Button x:Name="deleteButton" Text="Delete Habit" Clicked="deleteButton_Clicked"/>
+            <Button x:Name="updateButton" Text="Update Details" Clicked="updateButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
