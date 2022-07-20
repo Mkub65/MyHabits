@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FirstApp"
+             xmlns:local1="clr-namespace:FirstApp.Model"
              Title="FlyoutMenu"
              x:Class="FirstApp.SelectMenuPage">
     <StackLayout>
         <ListView x:Name="listView" x:FieldModifier="public">
             <ListView.ItemsSource>
-                <x:Array Type="{x:Type local:SelectPageItem}">
-                    <local:SelectPageItem Title="All Habits" TargetPage="{x:Type local:MainPage}"/>
-                    <local:SelectPageItem Title="Active Habit Plans" TargetPage="{x:Type local:ActiveHabitPlansPage}"/>
+                <x:Array Type="{x:Type local1:SelectPageItem}">
+                    <local1:SelectPageItem Title="All Habits" TargetPage="{x:Type local:MainPage}"/>
+                    <local1:SelectPageItem Title="Active Habit Plans" TargetPage="{x:Type local:ActiveHabitPlansPage}"/>
+                    <local1:SelectPageItem Title="New Main Page" TargetPage="{x:Type local:NewMainPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>

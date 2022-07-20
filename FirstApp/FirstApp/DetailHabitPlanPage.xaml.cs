@@ -1,4 +1,7 @@
 ﻿using FirstApp.Model;
+using FirstApp.ViewModels;
+using Microcharts;
+using SkiaSharp;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -14,63 +17,42 @@ namespace FirstApp
     public partial class DetailHabitPlanPage : ContentPage
     {
         readonly HabitPlan habitPlan;
+        public Dictionary<string, int> dict;
         public DetailHabitPlanPage(HabitPlan habitPlan)
         {
             InitializeComponent();
-
             this.habitPlan = habitPlan;
-            habitPlanName.Text = habitPlan.HabitPlanName;
-            habitPlanStartDate.Text = habitPlan.StartDate.ToString();
-            habitPlanEndDate.Text = habitPlan.EndDate.ToString();
+            (Resources["vm"] as DetailsHabitPlanVM).HabitPlan = habitPlan;
+            (Resources["vm"] as DetailsHabitPlanVM).HabitPlan.HabitPlanName = habitPlan.HabitPlanName;
+            DrawChart();
         }
-
-        private void DeleteHabitPlan_Clicked(object sender, EventArgs e)
+        void DrawChart()
         {
+            dict = new Dictionary<string, int>();
+            List<string> statusVariants = new List<string> { "None", "Done", "NotDone", "Ignore" };
             using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
             {
                 conn.CreateTable<HabitTracker>();
-                var rowsToDelete = conn.Table<HabitTracker>().Where(x => x.HabitPlanId == habitPlan.Id).ToList();
-                for (int i = 0; i < rowsToDelete.Count; i++)
+                var statusTable = conn.Table<HabitTracker>().Where(i => i.HabitPlanId == habitPlan.Id);
+                foreach (string variant in statusVariants)
                 {
-                    conn.Delete(rowsToDelete[i]);
-                }
-                conn.CreateTable<HabitPlan>();
-                int deletedRows = conn.Delete(habitPlan);
-
-                if (deletedRows > 0)
-                {
-
-                    DisplayAlert("Success", "Habit plan succesfully deleted", "Ok");
-                    Navigation.PopAsync(IsEnabled);
-                }
-                else
-                {
-                    DisplayAlert("Failure", "Habit plan failed to be deleted", "Ok");
+                    var statusList = statusTable.Where(n => n.Status == variant).Count();
+                    dict.Add(variant, statusList);
                 }
             }
-        }
 
-        private void UpdateHabitPlan_Clicked(object sender, EventArgs e)
-        {
-            habitPlan.HabitPlanName = habitPlanName.Text;
-            habitPlan.StartDate = Convert.ToDateTime(habitPlanStartDate.Text);
-            habitPlan.EndDate = Convert.ToDateTime(habitPlanEndDate.Text);
-
-            using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
+            List<ChartEntry> DataList = new List<ChartEntry>();
+            foreach (KeyValuePair<string, int> dic in dict)
             {
-                conn.CreateTable<HabitPlan>();
-                int updatedRows = conn.Update(habitPlan);
-
-                if (updatedRows > 0)
+                DataList.Add(new ChartEntry(dic.Value)
                 {
-                    DisplayAlert("Success", "Habit plan succesfully updated", "Ok");
-                    Navigation.PopAsync(IsEnabled);
-                }
-                else
-                {
-                    DisplayAlert("Failure", "Habit plan failed to be updated", "Ok");
-                }
+                    Label = dic.Key,
+                    ValueLabel = dic.Value.ToString(),
+                    Color = SKColor.Parse("#2c3e50")
+                });
             }
+            var chart = new BarChart { Entries = DataList, LabelTextSize = 45f };
+            chartView.Chart = chart;
         }
     }
 }

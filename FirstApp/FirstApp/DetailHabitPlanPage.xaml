@@ -1,20 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FirstApp.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="FirstApp.DetailHabitPlanPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:DetailsHabitPlanVM x:Key="vm"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Habit Plan Details"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Habit Plan Details" HorizontalOptions="Center"/>
+            <microcharts:ChartView x:Name="chartView" HeightRequest="150"/>
             <Label Text="Habit Plan Name"/>
-            <Entry x:Name="habitPlanName"/>
+            <Entry x:Name="habitPlanName" Text="{Binding Source={StaticResource vm}, Path=HabitPlanName}"/>
             <Label Text="Habit Start Date"/>
-            <Entry x:Name="habitPlanStartDate"/>
+            <Entry x:Name="habitPlanStartDate" Text="{Binding Source={StaticResource vm}, Path=StartDate}"/>
             <Label Text="Habit End Date"/>
-            <Entry x:Name="habitPlanEndDate"/>
-            <Button x:Name="DeleteHabitPlan" Clicked="DeleteHabitPlan_Clicked" Text="Delete Habit Plan"/>
-            <Button x:Name="UpdateHabitPlan" Clicked="UpdateHabitPlan_Clicked" Text="Update Habit Plan"/>
+            <Entry x:Name="habitPlanEndDate" Text="{Binding Source={StaticResource vm}, Path=EndDate}"/>
+            <Button x:Name="DeleteHabitPlan" Command="{Binding Source={StaticResource vm},Path=DeleteCommand}" Text="Delete Habit Plan"/>
+            <Button x:Name="UpdateHabitPlan" Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}" Text="Update Habit Plan"/>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</ContentPage>  
