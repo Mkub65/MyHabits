@@ -17,7 +17,6 @@ namespace FirstApp.ViewModels
         public string HabitPlanName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        Dictionary<string, int> dict;
         public DetailsHabitPlanVM()
         {
             UpdateCommand = new Command(Update);
@@ -69,48 +68,5 @@ namespace FirstApp.ViewModels
                 }
             }
         }
-        /*private void CreateData()
-        {
-            dict = new Dictionary<string, int>();
-            List<string> statusVariants = new List<string> { "None", "Done", "NotDone", "Ignore" };
-            using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
-            {
-                conn.CreateTable<HabitTracker>();
-                var statusTable = conn.Table<HabitTracker>().Where(i => i.HabitPlanId == HabitPlan.Id);
-                foreach (string variant in statusVariants)
-                {
-                    var statusList = statusTable.Where(n => n.Status == variant).Count();
-                    dict.Add(variant, statusList);
-                }
-            }
-
-        }
-        private readonly ChartEntry[] entries = new[]
-        {
-            new ChartEntry(212)
-            {
-                Label = "UWP",
-                ValueLabel = "112",
-                Color = SKColor.Parse("#2c3e50")
-            },
-            new ChartEntry(248)
-            {
-                Label = "Android",
-                ValueLabel = "648",
-                Color = SKColor.Parse("#77d065")
-            },
-            new ChartEntry(128)
-            {
-                Label = "iOS",
-                ValueLabel = "428",
-                Color = SKColor.Parse("#b455b6")
-            },
-            new ChartEntry(514)
-            {
-                Label = "Forms",
-                ValueLabel = "214",
-                Color = SKColor.Parse("#3498db")
-            }
-        };*/
     }
 }

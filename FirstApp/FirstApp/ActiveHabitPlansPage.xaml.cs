@@ -14,13 +14,12 @@ namespace FirstApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ActiveHabitPlansPage : ContentPage
     {
-        private ActiveHabitPlanVM vm;
+        private readonly ActiveHabitPlanVM vm;
         public ActiveHabitPlansPage()
         {
             InitializeComponent();
             vm = Resources["vm"] as ActiveHabitPlanVM;
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

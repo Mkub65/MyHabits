@@ -12,6 +12,7 @@
                     <local1:SelectPageItem Title="All Habits" TargetPage="{x:Type local:MainPage}"/>
                     <local1:SelectPageItem Title="Active Habit Plans" TargetPage="{x:Type local:ActiveHabitPlansPage}"/>
                     <local1:SelectPageItem Title="New Main Page" TargetPage="{x:Type local:NewMainPage}"/>
+                    <local1:SelectPageItem Title="Summary Page" TargetPage="{x:Type local:SummaryPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
             <ListView.ItemTemplate>

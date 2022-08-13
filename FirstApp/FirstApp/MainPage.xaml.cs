@@ -11,7 +11,7 @@ namespace FirstApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        private MainPageVM vm;
+        private readonly MainPageVM vm;
         public MainPage()
         {
             InitializeComponent();

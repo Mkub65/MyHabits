@@ -23,7 +23,9 @@ namespace FirstApp
             InitializeComponent();
             this.habitPlan = habitPlan;
             (Resources["vm"] as DetailsHabitPlanVM).HabitPlan = habitPlan;
-            (Resources["vm"] as DetailsHabitPlanVM).HabitPlan.HabitPlanName = habitPlan.HabitPlanName;
+            habitPlanName.Text = habitPlan.HabitPlanName;
+            habitPlanStartDate.Text = habitPlan.StartDate.ToString("dd/MM/yyyy");
+            habitPlanEndDate.Text = habitPlan.EndDate.ToString("dd/MM/yyyy");
             DrawChart();
         }
         void DrawChart()

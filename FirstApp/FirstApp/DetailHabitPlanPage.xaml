@@ -11,14 +11,14 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Habit Plan Details" HorizontalOptions="Center"/>
+        <StackLayout Spacing="3">
+            <Label Text="Details Of Selected Habit Plan" HorizontalOptions="Center" FontSize="20"/>
             <microcharts:ChartView x:Name="chartView" HeightRequest="150"/>
-            <Label Text="Habit Plan Name"/>
+            <Label Text="Name" FontSize="15"/>
             <Entry x:Name="habitPlanName" Text="{Binding Source={StaticResource vm}, Path=HabitPlanName}"/>
-            <Label Text="Habit Start Date"/>
+            <Label Text="Start Date" FontSize="15"/>
             <Entry x:Name="habitPlanStartDate" Text="{Binding Source={StaticResource vm}, Path=StartDate}"/>
-            <Label Text="Habit End Date"/>
+            <Label Text="End Date" FontSize="15"/>
             <Entry x:Name="habitPlanEndDate" Text="{Binding Source={StaticResource vm}, Path=EndDate}"/>
             <Button x:Name="DeleteHabitPlan" Command="{Binding Source={StaticResource vm},Path=DeleteCommand}" Text="Delete Habit Plan"/>
             <Button x:Name="UpdateHabitPlan" Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}" Text="Update Habit Plan"/>

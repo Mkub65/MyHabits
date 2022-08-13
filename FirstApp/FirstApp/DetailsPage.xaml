@@ -16,8 +16,8 @@
             <Entry x:Name="habitStartDate"/>
             <Label Text="Habit End Date"/>
             <Entry x:Name="habitEndDate"/>
-            <Button x:Name="deleteButton" Text="Delete Habit" Clicked="deleteButton_Clicked"/>
-            <Button x:Name="updateButton" Text="Update Details" Clicked="updateButton_Clicked"/>
+            <Button x:Name="deleteButton" Text="Delete Habit" Clicked="DeleteButton_Clicked"/>
+            <Button x:Name="updateButton" Text="Update Details" Clicked="UpdateButton_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

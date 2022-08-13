@@ -25,7 +25,7 @@ namespace FirstApp
             habitDescription.Text = selectedHabit.Description;
         }
 
-        private void deleteButton_Clicked(object sender, EventArgs e)
+        private void DeleteButton_Clicked(object sender, EventArgs e)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
             {
@@ -43,7 +43,7 @@ namespace FirstApp
             }
         }
 
-        private void updateButton_Clicked(object sender, EventArgs e)
+        private void UpdateButton_Clicked(object sender, EventArgs e)
         {
             selectedHabit.Name = habitName.Text;
             selectedHabit.Description = habitDescription.Text;

@@ -20,6 +20,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="Copy Habit Plans for new Period" Command="{Binding Source={StaticResource vm}, Path=CopyCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
