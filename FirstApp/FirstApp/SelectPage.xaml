@@ -4,6 +4,7 @@
              x:Class="FirstApp.SelectPage"
              xmlns:local="clr-namespace:FirstApp"
              NavigationPage.HasNavigationBar="False">
+    
     <FlyoutPage.Flyout>
         <local:SelectMenuPage x:Name="flyout"/>
     </FlyoutPage.Flyout>

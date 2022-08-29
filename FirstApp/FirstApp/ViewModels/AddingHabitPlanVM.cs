@@ -31,42 +31,60 @@ namespace FirstApp.ViewModels
                 StartDate = StartDate,
                 EndDate = EndDate,
             };
-            if (CheckIfHabitCollidate(habitPlan, SelectedHabit))
+            if(CheckIfHabitPlanWithSameNameExist(habitPlan, SelectedHabit))
             {
-                using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
+                if (CheckIfHabitCollidate(habitPlan, SelectedHabit))
                 {
-                    conn.CreateTable<HabitPlan>();
-                    var rows = conn.Insert(habitPlan);
-
-                    if (habitPlan.StartDate < DateTime.Now)
+                    using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
                     {
+                        conn.CreateTable<HabitPlan>();
+                        var rows = conn.Insert(habitPlan);
+
                         conn.CreateTable<HabitTracker>();
-                        foreach (DateTime day in EachCalendarDay(habitPlan.StartDate, DateTime.Now))
+                        foreach (DateTime day in EachCalendarDay(habitPlan.StartDate, habitPlan.EndDate))
                         {
-                            HabitTracker tracker = new HabitTracker()
+                            if (day < DateTime.Now)
                             {
-                                UpdateDate = day.Date,
-                                Status = "NotDone",
-                                HabitPlanId = habitPlan.Id,
-                            };
-                            conn.Insert(tracker);
+                                HabitTracker trackerForPastDate = new HabitTracker()
+                                {
+                                    UpdateDate = day.Date,
+                                    Status = "NotDone",
+                                    HabitPlanId = habitPlan.Id,
+                                };
+                                conn.Insert(trackerForPastDate);
+                            }
+                            else
+                            {
+                                HabitTracker trackerForFutureDate = new HabitTracker()
+                                {
+                                    UpdateDate = day.Date,
+                                    Status = "NotSet",
+                                    HabitPlanId = habitPlan.Id,
+                                };
+                                conn.Insert(trackerForFutureDate);
+                            }
+
+                        }
+                        if (rows > 0)
+                        {
+                            App.Current.MainPage.DisplayAlert("Success", "Habit plan succesfully added", "Ok");
+                            App.Current.MainPage.Navigation.PopAsync();
+                        }
+                        else
+                        {
+                            App.Current.MainPage.DisplayAlert("Failure", "Habit plan failed to added", "Ok");
+                            App.Current.MainPage.Navigation.PopAsync();
                         }
                     }
-                    if (rows > 0)
-                    {
-                        App.Current.MainPage.DisplayAlert("Success", "Habit plan succesfully added", "Ok");
-                        App.Current.MainPage.Navigation.PopAsync();
-                    }
-                    else
-                    {
-                        App.Current.MainPage.DisplayAlert("Failure", "Habit plan failed to added", "Ok");
-                        App.Current.MainPage.Navigation.PopAsync();
-                    }
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("Failure", "Habit Plan for this time span already exist, try diffrent Start Date or End Date", "Ok");
                 }
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("Failure","Habit Plan for this time span already exist, try diffrent Start Date or End Date", "Ok");
+                App.Current.MainPage.DisplayAlert("Failure", "Habit Plan with same name already exists, try diffrent Name", "Ok");
             }
         }
         public IEnumerable<DateTime> EachCalendarDay(DateTime startDate, DateTime endDate)
@@ -91,6 +109,31 @@ namespace FirstApp.ViewModels
                 } 
             }
             if(collidatePlans > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CheckIfHabitPlanWithSameNameExist(HabitPlan NewHabitPlan, Habit Habit)
+        {
+            int habitPlansWithSameName = 0;
+            using(SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
+            {
+                conn.CreateTable<HabitPlan>();
+                var allHabitPlans = conn.Table<HabitPlan>();
+                var selectedHabitPlans = (from n in allHabitPlans where n.HabitId == Habit.Id select n).ToList();
+                for (int i = 0; i < selectedHabitPlans.Count; i++)
+                {
+                    if(NewHabitPlan.HabitPlanName == selectedHabitPlans[i].HabitPlanName)
+                    {
+                        habitPlansWithSameName++;
+                    }
+                }
+            }
+            if(habitPlansWithSameName > 0)
             {
                 return false;
             }

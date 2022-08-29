@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FirstApp.NewMainPage">
+             x:Class="FirstApp.NewMainPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Content>
         <StackLayout>
-            <DatePicker DateSelected="DatePicker_DateSelected" Format="dd/MM/yyyy" TextColor="Black"/>
+            <DatePicker DateSelected="DatePicker_DateSelected" Format="dd/MM/yyyy" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
             <ListView  x:Name="ProductsListView">
                 <ListView.ItemTemplate>
-                <DataTemplate>
+                    <DataTemplate>
                         <ViewCell>
                             <Grid Padding="3">
                                 <Grid.RowDefinitions>
@@ -16,18 +17,16 @@
                                     <RowDefinition Height="10"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Key, StringFormat='Name: {0:F2}'}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="Black"/>
-                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Value,StringFormat='Status: {0:F2}'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black"/>
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Key, StringFormat='Name: {0:F2}'}" VerticalOptions="Center" HorizontalOptions="Start" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Value,StringFormat='Status: {0:F2}'}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
                             </Grid>
                         </ViewCell>
-                </DataTemplate> 
-            </ListView.ItemTemplate>
-        </ListView>
-            <Button x:Name="SetStatus" Text="Set Status For listed Habits" Clicked="SetStatus_Clicked"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

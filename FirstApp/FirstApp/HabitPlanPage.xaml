@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FirstApp.ViewModels"
-             x:Class="FirstApp.HabitPlanPage">
+             x:Class="FirstApp.HabitPlanPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:HabitPlanPageVM x:Key="vm"/>
@@ -19,13 +20,15 @@
                       SelectedItem="{Binding Source={StaticResource vm}, Path=SelectedHabitPlan}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding HabitPlanName}"/>
+                        <TextCell Text="{Binding HabitPlanName}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <Button x:Name="deleteHabitButton" 
                     Text="Delete Habit" 
-                    Command="{Binding Source={StaticResource vm},Path=DeleteCommand}"/>
+                    Command="{Binding Source={StaticResource vm},Path=DeleteCommand}"
+                    BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
+                    TextColor="{AppThemeBinding Dark=Black,  Light=White}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

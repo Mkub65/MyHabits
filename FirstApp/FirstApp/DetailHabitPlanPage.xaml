@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FirstApp.ViewModels"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             x:Class="FirstApp.DetailHabitPlanPage">
+             x:Class="FirstApp.DetailHabitPlanPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:DetailsHabitPlanVM x:Key="vm"/>
@@ -12,16 +13,18 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="3">
-            <Label Text="Details Of Selected Habit Plan" HorizontalOptions="Center" FontSize="20"/>
+            <Label Text="Details Of Selected Habit Plan" HorizontalOptions="Center" FontSize="20" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
             <microcharts:ChartView x:Name="chartView" HeightRequest="150"/>
-            <Label Text="Name" FontSize="15"/>
-            <Entry x:Name="habitPlanName" Text="{Binding Source={StaticResource vm}, Path=HabitPlanName}"/>
-            <Label Text="Start Date" FontSize="15"/>
-            <Entry x:Name="habitPlanStartDate" Text="{Binding Source={StaticResource vm}, Path=StartDate}"/>
-            <Label Text="End Date" FontSize="15"/>
-            <Entry x:Name="habitPlanEndDate" Text="{Binding Source={StaticResource vm}, Path=EndDate}"/>
-            <Button x:Name="DeleteHabitPlan" Command="{Binding Source={StaticResource vm},Path=DeleteCommand}" Text="Delete Habit Plan"/>
-            <Button x:Name="UpdateHabitPlan" Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}" Text="Update Habit Plan"/>
+            <Label Text="Name" FontSize="15" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Entry x:Name="habitPlanName" Text="{Binding Source={StaticResource vm}, Path=HabitPlanName}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Label Text="Start Date" FontSize="15" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Entry x:Name="habitPlanStartDate" Text="{Binding Source={StaticResource vm}, Path=StartDate}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Label Text="End Date" FontSize="15" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Entry x:Name="habitPlanEndDate" Text="{Binding Source={StaticResource vm}, Path=EndDate}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Button x:Name="DeleteHabitPlan" Command="{Binding Source={StaticResource vm},Path=DeleteCommand}" Text="Delete Habit Plan" BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
+                    TextColor="{AppThemeBinding Dark=Black,  Light=Black}"/>
+            <Button x:Name="UpdateHabitPlan" Command="{Binding Source={StaticResource vm}, Path=UpdateCommand}" Text="Update Habit Plan" BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
+                    TextColor="{AppThemeBinding Dark=Black,  Light=Black}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>  

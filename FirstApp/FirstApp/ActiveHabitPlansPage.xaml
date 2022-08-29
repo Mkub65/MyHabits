@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FirstApp.ViewModels"
-             x:Class="FirstApp.ActiveHabitPlansPage">
+             x:Class="FirstApp.ActiveHabitPlansPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:ActiveHabitPlanVM x:Key="vm"/>
@@ -16,11 +18,13 @@
                       ItemsSource="{Binding Source={StaticResource vm}, Path=ActiveHabitPlans}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding HabitPlanName}"/>
+                        <TextCell Text="{Binding HabitPlanName}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Copy Habit Plans for new Period" Command="{Binding Source={StaticResource vm}, Path=CopyCommand}"/>
+            <Button Text="Copy Habit Plans for new Period" Command="{Binding Source={StaticResource vm}, Path=CopyCommand}"
+                    BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
+                    TextColor="{AppThemeBinding Dark=Black,  Light=White}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,16 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             x:Class="FirstApp.SummaryPage">
+             x:Class="FirstApp.SummaryPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="SummaryListView" RowHeight="200">
+            <ListView x:Name="SummaryListView" RowHeight="210">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding HabitPlanName}" FontSize="15" TextColor="Black"/>
-                                <microcharts:ChartView Chart="{Binding ChartData}" HeightRequest="150" BackgroundColor="AntiqueWhite"/>
+                                <Label Text="{Binding HabitPlanName}" FontSize="15" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+                                <microcharts:ChartView Chart="{Binding ChartData}" HeightRequest="150"/>
+                                <Label Text="{Binding DaysToEnd, StringFormat='{0:F2} days until end of the Habit Plan'}" FontSize="15" TextColor="{AppThemeBinding Dark=White,  Light=Black}" HorizontalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

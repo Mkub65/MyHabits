@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:FirstApp.ViewModels"
-             x:Class="FirstApp.AddingPage">
+             x:Class="FirstApp.AddingPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <vm:AddingPageVM x:Key="vm"/>
@@ -10,10 +11,11 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add New Habit" />
-            <Entry x:Name="name" Placeholder="Name of Habit" Text="{Binding Source={StaticResource vm},Path=Name}" />
-            <Entry x:Name="description" Placeholder="Description of Habit" Text="{Binding Source={StaticResource vm}, Path=Description}"/>
-            <Button TextColor="Black" Text="Add Habit" Command="{Binding Source={StaticResource vm}, Path=AddHabitCommand}"/> 
+            <Label Text="Add New Habit" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Entry x:Name="name" Placeholder="Name of Habit" Text="{Binding Source={StaticResource vm},Path=Name}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Entry x:Name="description" Placeholder="Description of Habit" Text="{Binding Source={StaticResource vm}, Path=Description}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
+            <Button Text="Add Habit" Command="{Binding Source={StaticResource vm}, Path=AddHabitCommand}" BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
+                    TextColor="{AppThemeBinding Dark=Black,  Light=Black}"/> 
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

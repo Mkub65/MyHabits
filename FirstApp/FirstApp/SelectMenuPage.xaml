@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:FirstApp"
              xmlns:local1="clr-namespace:FirstApp.Model"
              Title="FlyoutMenu"
-             x:Class="FirstApp.SelectMenuPage">
+             x:Class="FirstApp.SelectMenuPage"
+             BackgroundColor="{AppThemeBinding Dark=Black, Light=White}">
     <StackLayout>
         <ListView x:Name="listView" x:FieldModifier="public">
             <ListView.ItemsSource>
@@ -23,7 +24,7 @@
                                 <ColumnDefinition Width="33"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Text="{Binding Title}"/>
+                            <Label Grid.Column="1" Text="{Binding Title}" TextColor="{AppThemeBinding Dark=White,  Light=Black}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

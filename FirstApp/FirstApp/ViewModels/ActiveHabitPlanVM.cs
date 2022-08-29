@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -127,21 +128,20 @@ namespace FirstApp.ViewModels
         }
         private async void CopyHabitPlansForNewPeriod()
         {
-            var promptData = await App.Current.MainPage.DisplayPromptAsync("Need Information", "Put the start date for new habits","OK","Cancel","01/01/2022");
+            var promptData = await App.Current.MainPage.DisplayPromptAsync("Need Information", "Put the End date for new habits","OK","Cancel","01/01/2022");
             if(promptData != null)
             {
-                var newStartDate = DateTime.Parse(promptData);
+                var newEndDate = DateTime.ParseExact(promptData, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 var habitPlans = ActiveHabitPlans;
                 List<HabitPlan> newPlans = new List<HabitPlan>();
                 foreach (var habit in habitPlans)
                 {
-                    TimeSpan dateDiff = habit.EndDate - habit.StartDate;
                     newPlans.Add(new HabitPlan
                     {
                         HabitId = habit.HabitId,
                         HabitPlanName = habit.HabitPlanName,
-                        StartDate = newStartDate,
-                        EndDate = newStartDate.AddDays(dateDiff.TotalDays)
+                        StartDate = habit.EndDate.AddDays(1),
+                        EndDate = newEndDate
                     });
                 }
                 using (SQLiteConnection conn = new SQLiteConnection(App.DateBaseLocation))
