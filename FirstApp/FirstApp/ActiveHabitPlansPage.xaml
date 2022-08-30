@@ -22,7 +22,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Copy Habit Plans for new Period" Command="{Binding Source={StaticResource vm}, Path=CopyCommand}"
+            <Button Text="Copy Habit Plans for new period" Command="{Binding Source={StaticResource vm}, Path=CopyCommand}"
                     BackgroundColor="{AppThemeBinding Dark=White,  Light={StaticResource Primary}}"
                     TextColor="{AppThemeBinding Dark=Black,  Light=White}"/>
         </StackLayout>
